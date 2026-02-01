@@ -13,7 +13,7 @@ body {
     align-items: center;
     background-color: var(--pink-light);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden; /* Crucial to keep the page intact */
+    overflow: hidden; /* Prevents scrollbars when button moves */
 }
 
 /* Utility Class to hide elements */
@@ -30,11 +30,10 @@ body {
     max-width: 420px;
     width: 85%;
     position: relative;
-    z-index: 10; /* Ensures card stays on top of floating hearts */
+    z-index: 10;
     transition: transform 0.3s ease-in-out;
 }
 
-/* A little pop animation when the success card appears */
 .card:not(.hidden) {
     animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -52,7 +51,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Make the success image bounce */
 .happiness {
     animation: bounce 1s infinite alternate;
 }
@@ -72,8 +70,8 @@ h1 {
     justify-content: center;
     gap: 20px;
     margin-bottom: 25px;
-    position: relative;
-    height: 60px; /* Define height so the area doesn't collapse when 'No' moves */
+    /* Important: Keeps the Yes button centered even when No leaves */
+    min-height: 50px; 
     align-items: center;
 }
 
@@ -100,23 +98,10 @@ button {
     transform: scale(1.05);
 }
 
-/* Container for the No button allows absolute positioning without affecting layout */
-#noBtnContainer {
-    position: absolute;
-    right: 20px; /* Initial position */
-}
-
 #noBtn {
     background-color: #f0f0f0;
     color: #555;
-    /* Important: The JS changes this to 'fixed' when it moves */
     position: relative; 
-}
-
-.subtext {
-    font-size: 14px;
-    color: #999;
-    font-style: italic;
 }
 
 /* --- FALLING HEARTS ANIMATION --- */
@@ -126,7 +111,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Ensures clicks go through the hearts */
+    pointer-events: none;
     z-index: 1;
     overflow: hidden;
 }
